@@ -42,10 +42,11 @@ const store = createStore(
   rootReducer,
 
   // ! 课后补充 combineReducers用法
-  // combineReducers({
-  //   count: countReducer
-  //   // 如果还有别的reducer，可以继续在这里添加
-  // }),
+  combineReducers({
+    count: countReducer,
+    // 如果还有别的reducer，可以继续在这里添加
+    count2: countReducer2
+  }),
   applyMiddleware(thunk, logger, promise)
 );
 
