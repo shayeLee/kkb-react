@@ -1,5 +1,5 @@
 // import {createStore, applyMiddleware, combineReducers} from "redux";
-import {createStore, applyMiddleware} from "../kredux/";
+import {createStore, applyMiddleware, combineReducers} from "../kredux/";
 // import thunk from "redux-thunk";
 // import logger from "redux-logger";
 // import promise from "redux-promise";
@@ -13,7 +13,7 @@ import isPromise from "is-promise";
 import {isFSA} from "flux-standard-action";
 
 // 定义修改规则
-function countReducer(state = 0, action) {
+function countReducer(state = 1, action) {
   switch (action.type) {
     case "ADD":
       return state + 1;
@@ -24,8 +24,22 @@ function countReducer(state = 0, action) {
   }
 }
 
+function doubleCountReducer(state = 1, action) {
+  switch (action.type) {
+    case "DOUBLE_ADD":
+      return state * 2;
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({
+  count: countReducer,
+  doubleCount: doubleCountReducer
+});
+
 const store = createStore(
-  countReducer,
+  rootReducer,
 
   // ! 课后补充 combineReducers用法
   // combineReducers({

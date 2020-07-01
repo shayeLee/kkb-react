@@ -18,6 +18,7 @@ export default class ReduxPage extends Component {
 
   add = () => {
     store.dispatch({type: "ADD"});
+    store.dispatch({type: "DOUBLE_ADD"})
   };
 
   asyAdd = () => {
@@ -42,10 +43,12 @@ export default class ReduxPage extends Component {
     );
   };
   render() {
+    const { count, doubleCount } = store.getState();
     return (
       <div>
         <h3>ReduxPage</h3>
-        <p>{store.getState()}</p>
+        <p>{count}</p>
+        <p>{doubleCount}</p>
         {/* ! 课后补充 使用combineReducers之后，这里返回的state是个对象 */}
         {/* <p>{store.getState().count}</p> */}
         <button onClick={this.add}>add</button>
