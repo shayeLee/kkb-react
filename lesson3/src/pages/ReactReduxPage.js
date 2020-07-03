@@ -43,9 +43,9 @@ class ReactReduxPage extends Component {
       <div>
         <h3>ReactReduxPage</h3>
         <p>{count}</p>
-        <button onClick={() => dispatch({type: "ADD", payload: 100})}>
+        {/* <button onClick={() => dispatch({type: "ADD", payload: 100})}>
           dispatch add
-        </button>
+        </button> */}
         <button onClick={add}> add</button>
         <button onClick={minus}> minus</button>
       </div>

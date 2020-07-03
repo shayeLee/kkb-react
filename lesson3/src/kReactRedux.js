@@ -7,10 +7,10 @@ export const connect = (
   mapStateToProps = state => state,
   mapDispatchToProps
 ) => WrappedComponent => props => {
-  //props是WrappedComponent的属性值
+  // props是WrappedComponent的属性值
   const store = useContext(Context);
   const {getState, dispatch, subscribe} = store;
-  // todo 获取state
+  // 获取state
   const stateProps = mapStateToProps(getState());
   let dispatchProps = {
     dispatch
