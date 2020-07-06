@@ -30,6 +30,7 @@ import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import _404Page from "./pages/_404Page";
 import RouteComponentPage from "./pages/RouteComponentPage";
+import WelcomePage from "./pages/WelcomePage";
 
 export default function App(props) {
   return (
@@ -46,12 +47,13 @@ export default function App(props) {
             exact
             path="/"
             // children={children}
-            //component={HomePage}
-            render={render}
+            component={HomePage}
+            //render={render}
           />
           <Route path="/user" component={UserPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/product/:id" render={() => <Product />} />
+          <Route path="/welcome" component={WelcomePage} />
 
           <Route component={_404Page} />
         </Switch>
