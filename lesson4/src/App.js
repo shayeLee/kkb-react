@@ -1,4 +1,17 @@
 import React from "react";
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Link,
+//   Switch,
+//   useRouteMatch,
+//   useHistory,
+//   useLocation,
+//   useParams,
+//   withRouter,
+//   Prompt
+// } from "react-router-dom";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -10,19 +23,7 @@ import {
   useParams,
   withRouter,
   Prompt
-} from "react-router-dom";
-
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Link,
-//   Switch,
-//   useRouteMatch,
-//   useHistory,
-//   useLocation,
-//   useParams,
-//   withRouter
-// } from "./k-react-router-dom/";
+} from "./k-react-router-dom/";
 
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
@@ -50,7 +51,6 @@ export default function App(props) {
           />
           <Route path="/user" component={UserPage} />
           <Route path="/login" component={LoginPage} />
-          {/* <Route path="/product/:id" component={Product} /> */}
           <Route path="/product/:id" render={() => <Product />} />
 
           <Route component={_404Page} />
@@ -75,9 +75,6 @@ class Product extends React.Component {
         <Prompt
           when={this.state.confirm}
           message="Are you sure you want to leave?"
-          // message={location => {
-          //   return "Are you sure you want to leave-fun";
-          // }}
         />
       </div>
     );
@@ -89,7 +86,6 @@ class Product extends React.Component {
 //   const history = useHistory();
 //   const location = useLocation();
 //   const _params = useParams();
-//   console.log("match", match); //sy-log
 //   // const {match} = props;
 //   const {params, url} = match;
 //   const {id} = params;

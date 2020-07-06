@@ -4,6 +4,7 @@ import Link from "./Link";
 import Switch from "./Switch";
 import {useRouteMatch, useHistory, useLocation, useParams} from "./hooks";
 import withRouter from "./withRouter";
+import Prompt from './Prompt';
 
 export {
   BrowserRouter,
@@ -14,5 +15,6 @@ export {
   useHistory,
   useLocation,
   useParams,
-  withRouter
+  withRouter,
+  Prompt
 };

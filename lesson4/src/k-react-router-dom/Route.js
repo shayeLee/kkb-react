@@ -12,13 +12,14 @@ export default class Route extends Component {
           const match = computedMatch
             ? computedMatch
             : path
-            ? matchPath(location.pathname, this.props)
-            : context.match;
+              ? matchPath(location.pathname, this.props)
+              : context.match;
           const props = {
             ...context,
             location,
             match
           };
+          console.log('route match: ', props);
           //match children, component, render | null
           //不match children function | null
           return (

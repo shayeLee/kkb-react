@@ -8,13 +8,13 @@ export default class Switch extends Component {
       <RouterContext.Consumer>
         {context => {
           const {location} = context;
-          let match; //找到匹配的元素，match设置为true
+          let match = null; //找到匹配的元素
           let element; // 匹配的元素
 
           const {children} = this.props;
           // todo 查找 遍历
           React.Children.forEach(children, child => {
-            if (match == null && React.isValidElement(child)) {
+            if (match === null && React.isValidElement(child)) {
               element = child;
               const {path} = child.props;
               match = path
@@ -22,7 +22,6 @@ export default class Switch extends Component {
                 : context.match;
             }
           });
-
           return match
             ? React.cloneElement(element, {
                 computedMatch: match
