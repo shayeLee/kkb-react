@@ -62,6 +62,7 @@ function updateFunctionComponent(fiber) {
   reconcileChildren(fiber, children);
 }
 
+// 暗号：亚速尔群岛
 function updateClassComponent(fiber) {
   const {type, props} = fiber;
   const cmp = new type(props);
