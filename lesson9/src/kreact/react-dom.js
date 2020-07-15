@@ -1,4 +1,4 @@
-import { TEXT, PLACEMENT } from "./const";
+import {TEXT, PLACEMENT} from "./const";
 
 // vnode虚拟dom
 // node真实dom节点
@@ -17,7 +17,6 @@ import { TEXT, PLACEMENT } from "./const";
 
 // 下一个单元任务
 let nextUnitOfWork = null;
-
 // work in progress fiber root
 let wipRoot = null;
 
@@ -39,13 +38,19 @@ function render(vnode, container) {
 
 // 根据传入的vnode，返回node
 function createNode(vnode) {
-  const { type, props } = vnode;
+  const {type, props} = vnode;
   let node;
   if (type === TEXT) {
     node = document.createTextNode("");
   } else if (typeof type === "string") {
     node = document.createElement(type);
   }
+  //  else if (typeof type === "function") {
+  //   // 函数组件 、类组件都走这里
+  //   node = type.isReactComponent
+  //     ? updateClassComponent(vnode)
+  //     : updateFunctionComponent(vnode);
+  // }
   else {
     // 源码当中没有创建节点，我这里简单处理了
     node = document.createDocumentFragment();
@@ -57,12 +62,11 @@ function createNode(vnode) {
 }
 
 function updateFunctionComponent(fiber) {
-  const { type, props } = fiber;
+  const {type, props} = fiber;
   const children = [type(props)];
   reconcileChildren(fiber, children);
 }
 
-// 暗号：亚速尔群岛
 function updateClassComponent(fiber) {
   const {type, props} = fiber;
   let cmp = new type(props);
@@ -115,13 +119,13 @@ function updateHostComponent(fiber) {
   }
 
   // 协调
-  const { children } = fiber.props;
+  const {children} = fiber.props;
   reconcileChildren(fiber, children);
 }
 
 function performUnitOfWork(fiber) {
   // 1. 执行当前任务
-  const { type } = fiber;
+  const {type} = fiber;
   if (typeof type === "function") {
     type.isReactComponent
       ? updateClassComponent(fiber)
@@ -135,7 +139,7 @@ function performUnitOfWork(fiber) {
     return fiber.child;
   }
 
-  // 没有子元素，寻找兄弟，没有兄弟，寻找父亲的兄弟
+  // 没有子元素， 寻找兄弟
   let nextFiber = fiber;
   while (nextFiber) {
     if (nextFiber.sibling) {
@@ -144,7 +148,6 @@ function performUnitOfWork(fiber) {
     nextFiber = nextFiber.return;
   }
 }
-
 function workLoop(deadline) {
   // 有下一个任务，并且当前帧还没有结束
   while (nextUnitOfWork && deadline.timeRemaining() > 1) {
@@ -187,4 +190,4 @@ function commitWorker(fiber) {
   commitWorker(fiber.sibling);
 }
 
-export default { render };
+export default {render};
